@@ -1,0 +1,31 @@
+# EC2/Main --------------------------------------
+data "aws_ami" "serverClient" {
+  filter {
+    name   = "image-id"
+    values = ["ami-0440d3b780d96b29d"]
+  }
+}
+
+resource "aws_iam_instance_profile" "ec2_profile_client" { # En Terraform primero hay que CREAR EL INSTANCE PROFILE para despues llamarlo
+  name = "EC2Full-Profile-Client"
+  role = "EC2Full" # Aqui va el nombre del ROLE, es mucho mas facil asi!!! +++++
+}
+
+resource "aws_instance" "Client_Server_EC2" {
+  ami                    = data.aws_ami.serverClient.id
+  instance_type          = var.instance_type_server_Client_Server
+  vpc_security_group_ids = [var.Client_ServerSG]
+  subnet_id              = var.subnet_id_Client_Server
+  iam_instance_profile   = aws_iam_instance_profile.ec2_profile_client.name # Es mas facil llamando el role por nombre arriba, liego aqui: var.iam_instance_profile_arn (con variable y luego outputs)
+
+  root_block_device {
+    volume_size = var.volume_size_Client_Server
+  }
+
+  user_data = templatefile("${path.module}/Setup-server.tpl", {}) # ${path.root} si se encuentra en el ROOT
+
+
+  tags = {
+    Name = "Client_Server"
+  }
+}
