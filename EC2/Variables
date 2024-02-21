@@ -1,5 +1,4 @@
 # Variables/EC2 -----------------------------------
-
 variable "NFSServerSG" {}
 variable "instance_type" {}
 variable "subnet_idNFS" {}
