@@ -1,5 +1,4 @@
 # Network/variables --------
-
 variable "vcp_cidr" {
   type = string
 }
