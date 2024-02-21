@@ -2,13 +2,13 @@
 data "aws_ami" "serverNFS" {
   filter {
     name   = "image-id"
-    values = ["ami-0440d3b780d96b29d"]
+    values = ["ami-123123123"] # Need to update to a real AMI
   }
 }
 
-resource "aws_iam_instance_profile" "ec2_profile" { # En Terraform primero hay que CREAR EL INSTANCE PROFILE para despues llamarlo
+resource "aws_iam_instance_profile" "ec2_profile" { # Create Instance Profile
   name = "EC2Full-Profile"
-  role = "EC2Full" # Aqui va el nombre del ROLE, es mucho mas facil asi!!! +++++
+  role = "EC2Full"
 }
 
 resource "aws_instance" "linux_server_nfs" {
@@ -16,7 +16,7 @@ resource "aws_instance" "linux_server_nfs" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [var.NFSServerSG]
   subnet_id              = var.subnet_idNFS
-  iam_instance_profile   = aws_iam_instance_profile.ec2_profile.name # Es mas facil llamando el role por nombre arriba, liego aqui: var.iam_instance_profile_arn (con variable y luego outputs)
+  iam_instance_profile   = aws_iam_instance_profile.ec2_profile.name
 
   root_block_device {
     volume_size = var.volume_size
