@@ -1,4 +1,4 @@
-# Network/Output -------------------------
+# Network/Output --------------------------
 output "vpc_id" {
   value = aws_vpc.VPC_For.id
 }
