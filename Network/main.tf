@@ -1,5 +1,4 @@
 # Network/Main --------
-
 resource "aws_vpc" "VPC_For" {
   cidr_block           = var.vcp_cidr
   enable_dns_hostnames = true
@@ -66,7 +65,7 @@ resource "aws_route_table_association" "RTAss02" {
   route_table_id = aws_route_table.RT.id
 }
 
-# RT al IGW -----------
+# RT to the IGW -----------
 resource "aws_route" "Public_Route" {
   route_table_id         = aws_route_table.RT.id
   destination_cidr_block = "0.0.0.0/0"
