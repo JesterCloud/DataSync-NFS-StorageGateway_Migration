@@ -1,10 +1,10 @@
-#SG/Network ---------
+#SG/Network ---------------------------------------------
 resource "aws_security_group" "DS_Access" {
   name        = "DSSG"
   description = "DataSync Security Group"
   vpc_id      = aws_vpc.VPC_For.id
 
-  # Reglas de entrada
+  # Inbound Rules
   ingress {
     description = "Port 80 (HTTP) for agent activation"
     from_port   = 80
@@ -13,13 +13,13 @@ resource "aws_security_group" "DS_Access" {
     cidr_blocks = ["0.0.0.0/0"] # Use your IP, or use a .tfvars to hide the IP value [var.access_ip]
   }
 
-  # Reglas de salida
+  # Out Rules
   egress {
     description = "Port 443 for communication with the AWS DataSync service"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"] # Use your IP, or use a .tfvars to hide the IP value [var.access_ip]
   }
 
   egress {
@@ -35,13 +35,13 @@ resource "aws_security_group" "DS_Access" {
   }
 }
 
-#SG_02 ------------------------------------------
+#SG_02 ===========================================
 resource "aws_security_group" "NFSSG" {
   name        = "NFSSG-SeverAccess"
   description = "SG of NFS SERVER"
   vpc_id      = aws_vpc.VPC_For.id
 
-  # Reglas de entrada
+  # Inbound Rules --------------
   ingress {
     description = "NFS from specific subnet"
     from_port   = 2049
@@ -66,7 +66,7 @@ resource "aws_security_group" "NFSSG" {
     cidr_blocks = ["0.0.0.0/0"] # Consider restricting this to a specific IP range for security
   }
 
-  # Reglas de salida
+  # Out Rules -----------
   egress {
     description = "NFS to specific subnet"
     from_port   = 2049
@@ -99,7 +99,7 @@ resource "aws_security_group" "Client_Access" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] #
+    cidr_blocks = ["0.0.0.0/0"] # Use your IP, or use a .tfvars to hide the IP value [var.access_ip]
   }
 
   # Regla de salida
@@ -108,7 +108,7 @@ resource "aws_security_group" "Client_Access" {
     from_port   = 2049
     to_port     = 2049
     protocol    = "tcp"
-    cidr_blocks = ["10.10.2.0/24"]
+    cidr_blocks = ["10.10.2.0/24"] # Subnet CIDR
   }
 
   tags = {
@@ -129,7 +129,7 @@ resource "aws_security_group" "FGTW" {
     from_port   = 2049
     to_port     = 2049
     protocol    = "tcp"
-    cidr_blocks = ["10.10.1.0/24"]
+    cidr_blocks = ["10.10.1.0/24"] # Subnet CIDR
   }
 
   ingress {
@@ -137,7 +137,7 @@ resource "aws_security_group" "FGTW" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"] # Use your IP, or use a .tfvars to hide the IP value [var.access_ip]
   }
 
   # Reglas de salida
@@ -146,7 +146,7 @@ resource "aws_security_group" "FGTW" {
     from_port   = 2049
     to_port     = 2049
     protocol    = "tcp"
-    cidr_blocks = ["10.10.1.0/24"]
+    cidr_blocks = ["10.10.1.0/24"] # Subnet CIDR
   }
 
   egress {
@@ -154,7 +154,7 @@ resource "aws_security_group" "FGTW" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"] # Use your IP, or use a .tfvars to hide the IP value [var.access_ip]
   }
 
   tags = {
