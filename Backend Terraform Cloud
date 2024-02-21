@@ -1,6 +1,6 @@
 terraform {
   cloud {
-    organization = "Jester_Cloud"
+    organization = "Jester_M"
 
     workspaces {
       name = "DataSync"
