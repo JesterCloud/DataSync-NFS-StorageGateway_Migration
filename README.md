@@ -1,7 +1,7 @@
 # Migrating 5GB of files and file shares using AWS DataSync and AWS File Gateway
 
 <p align="center">
-  <img src="screenshots/Architecture_NFS_StorageGateway.png" width="600"/>
+  <img src="Architecture_NFS_StorageGateway.png" width="600"/>
 </p>
 
 
