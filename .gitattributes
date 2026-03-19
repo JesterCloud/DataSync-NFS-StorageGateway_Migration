@@ -1,0 +1,10 @@
+*.tf linguist-detectable=true
+*.tfvars linguist-detectable=true
+*.yaml linguist-detectable=true
+*.yml linguist-detectable=true
+
+*.md linguist-vendored
+*.png linguist-vendored
+*.jpg linguist-vendored
+*.jpeg linguist-vendored
+*.txt linguist-vendored
