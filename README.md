@@ -3,6 +3,7 @@
 <p align="center">
   <img src="Architecture_NFS_StorageGateway.png" width="400"/>
 </p>
+
 ## Introduction
 Using Terraform to create the architecture, Terraform cloud to store states (Backend file). One-time migration to Amazon S3 from On-Prem to AWS, using DataSync for immediate data transfer, complemented by a continuous backup solution using AWS Storage Gateway's File Gateway for ongoing data protection and archival.
 
