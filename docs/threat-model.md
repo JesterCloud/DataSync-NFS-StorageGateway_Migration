@@ -1,5 +1,11 @@
 # Threat Model — DataSync / NFS / Storage Gateway Migration
 
+**Owner:** Giovanny Galindo
+**Version:** 1.0
+**Date:** 2026-09-22
+**Reviewed by:** pending peer review
+**Next review:** 2027-09-22, or sooner on any architecture change
+
 **Status:** lab/portfolio project. **Not a production security assessment.**
 **Analyzed from code only** — this stack was **not deployed** for this review (deploying to real AWS would incur cost, per explicit instruction). All findings are derived from static analysis of the Terraform and shell scripts in this repository.
 

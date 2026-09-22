@@ -31,6 +31,9 @@ Here:
 - **Images**: Images with the result of a successful migration, monitoring and results.
 - **Scripts**: The Script used to autogenerate Images and files (5GB) to migrate.
 
+## Security
+This project has a threat model (STRIDE analysis, attack tree, and severity-ranked findings) — see [docs/threat-model.md](docs/threat-model.md).
+
 [![LinkedIn](https://www.linkedin.com/in/giogalindo470/)](Tu-URL-de-LinkedIn)
 https://www.linkedin.com/in/giogalindo470/
 
